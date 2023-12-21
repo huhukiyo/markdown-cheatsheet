@@ -28,6 +28,7 @@ We conducted an experimental comparison between Direct Preference Optimization (
 - Assessment: Both training and evaluation losses were measured, along with binary classification accuracy, to provide a balanced view of the model's performance.
 - Findings: The CDPO algorithm demonstrated a significant reduction in variance and an accelerated rate of convergence compared to DPO. Notably, CDPO achieved the desired accuracy in half the GPU time required by DPO.
 - Loss vs. Accuracy: We noted that while DPO consistently improved accuracy, the evaluation loss did not always correlate with accuracy improvement, suggesting that DPO loss may offer a biased performance estimate.
+  ![](pic/DPO&CDPO.png)
     Markup :  ### put a picture here?###
 
 #### Heading 4 ####
