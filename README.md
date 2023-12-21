@@ -1,26 +1,34 @@
-Markdown Cheatsheet<a name="TOP"></a>
+Fine-Tuning Large Language Models — A Case Study from GPT-2<a name="TOP"></a>
 ===================
 
 - - - - 
-# Heading 1 #
+# 1.introduction #
+Large Language Models (LLMs) have demonstrated remarkable capabilities in general tasks and garnered significant attention in recent years.  Efforts to align these models with human preferences have included methods like Supervised Fine-Tuning (SFT) and Reinforcement Learning with Human Feedback (RLHF).  
+In our study, we take GPT-2 as a representative model to explore and suggest several strategies to lower the costs associated with fine-tuning LLMs.
 
-    Markup :  # Heading 1 #
+## install ##
+   pip install -r requirements.txt
 
-    -OR-
 
-    Markup :  ============= (below H1 text)
+#  Base Task: Supervised Fine-Tuning (SFT) #
+our base task was to implement Supervised Fine-Tuning (SFT) for GPT-2 using the "HH-RLHF" dataset to facilitate its dialogue ability with human.
+- Dataset Preparation
+- Model finetuning Process: Using GPT-2 as the foundation model, we trained and fine-tuned it on the prepared dataset. In our training process, we've adopted an accumulated gradient update strategy. This approach involves updating the model parameters only after a certain number of forward and backward passes, which speeds up the training process.
+- Periodic Assessment：
+To ensure our model is learning effectively, we perform periodic evaluations after every set number of iterations. The best checkpoint (lowest evaluation loss) will be stored in the out_dir directory.
+At the end, You can then run the code in (sample.py --out_dir=out-shakespeare):
 
-## Heading 2 ##
 
-    Markup :  ## Heading 2 ##
+    Markup: question and result here
 
-    -OR-
-
-    Markup: --------------- (below H2 text)
-
-### Heading 3 ###
-
-    Markup :  ### Heading 3 ###
+# exploration #
+## DPO & CDPO Comparative Analysis ##
+We conducted an experimental comparison between Direct Preference Optimization (DPO) and Conservative Direct Preference Optimization (CDPO). Our aim was to determine the effectiveness of each approach in terms of loss and classification accuracy on the "HH-RLHF" dataset.
+- Experimental Setup: We also utilized GPT-2 medium SFT model with gradient accumulation for larger batch size processing, and we employed the AdamW optimizer for training.
+- Assessment: Both training and evaluation losses were measured, along with binary classification accuracy, to provide a balanced view of the model's performance.
+- Findings: The CDPO algorithm demonstrated a significant reduction in variance and an accelerated rate of convergence compared to DPO. Notably, CDPO achieved the desired accuracy in half the GPU time required by DPO.
+- Loss vs. Accuracy: We noted that while DPO consistently improved accuracy, the evaluation loss did not always correlate with accuracy improvement, suggesting that DPO loss may offer a biased performance estimate.
+    Markup :  ### put a picture here?###
 
 #### Heading 4 ####
 
